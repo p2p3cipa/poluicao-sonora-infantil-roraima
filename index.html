@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Silêncio Também É Direito</title>
+<meta name="description" content="Livrinho digital interativo da CIPA/PMRR para crianças: poluição sonora, barulho excessivo e direito ao sossego em Roraima.">
+<meta name="theme-color" content="#1B4D2E">
+<meta name="color-scheme" content="light">
+
+<!-- PWA / funcionamento offline -->
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Som RR">
+
+<style>
+/* =====================================================================
+   SILÊNCIO TAMBÉM É DIREITO — folder digital infantil sobre poluição sonora
+   CIPA Monte Roraima / PMRR · paleta do brasão · mobile-first · sem recursos externos
+   ===================================================================== */
+:root{
+  --verde-esc:#1B4D2E; --verde:#238A55; --viva:#2EA76A; --verde-cl:#E3F5EA; --lima:#7CE0A0;
+  --ouro:#E8B94A; --ouro-esc:#B7860B; --ouro-cl:#FFF5D9;
+  --azul:#3987E5; --azul-esc:#1F5FAF; --ceu:#E3F0FF; --noite:#0F2B3D;
+  --coral:#E66767; --coral-esc:#B63F3F; --coral-cl:#FDECEC;
+  --creme:#FBF8EE; --tinta:#14261C; --tinta2:#3F5448;
+  --r:22px;
+  --sombra:0 5px 0 rgba(20,38,28,.08),0 16px 30px -14px rgba(20,38,28,.40);
+  --fonte:ui-rounded,"SF Pro Rounded","Segoe UI Rounded","Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --nav-h:66px;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:12px;overflow-x:hidden}
+body{margin:0;background:var(--creme);color:var(--tinta);font-family:var(--fonte);font-size:18px;line-height:1.45;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+main{overflow:hidden}
+svg{display:block;max-width:100%}
+button,input{font:inherit;color:inherit}
+h1,h2,h3{margin:0;font-weight:900;letter-spacing:-.01em;line-height:1.08}
+p{margin:0}
+:focus-visible{outline:4px solid var(--tinta);outline-offset:3px;border-radius:12px}
+.escuro :focus-visible{outline-color:#fff}
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+
+/* ---------- botões ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:14px 26px;border:0;border-radius:999px;background:var(--ouro);color:var(--tinta);
+  font-weight:900;font-size:19px;letter-spacing:.01em;cursor:pointer;text-decoration:none;text-align:center;box-shadow:0 5px 0 var(--ouro-esc),0 14px 24px -12px rgba(0,0,0,.45);
+  transition:transform .12s,box-shadow .12s;touch-action:manipulation}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ouro-esc)}
+.btn.verde{background:var(--verde);color:#fff;box-shadow:0 5px 0 #145233,0 14px 24px -12px rgba(0,0,0,.45)}
+.btn.verde:active{box-shadow:0 1px 0 #145233}
+.btn.alerta{background:var(--coral-esc);color:#fff;box-shadow:0 5px 0 #7E2626,0 14px 24px -12px rgba(0,0,0,.45)}
+.btn.alerta:active{box-shadow:0 1px 0 #7E2626}
+.btn.branco{background:#fff;color:var(--verde-esc);box-shadow:0 5px 0 #C9DCCF,0 14px 24px -12px rgba(0,0,0,.35)}
+.btn.branco:active{box-shadow:0 1px 0 #C9DCCF}
+.btn.azul{background:var(--azul-esc);color:#fff;box-shadow:0 5px 0 #123F78,0 14px 24px -12px rgba(0,0,0,.45)}
+.btn.azul:active{box-shadow:0 1px 0 #123F78}
+.btn.peq{min-height:50px;font-size:16px;padding:10px 20px}
+.btn.largo{width:100%}
+.btn[disabled]{cursor:default}
+
+/* ---------- seções ---------- */
+.sec{position:relative;padding:64px 16px 76px;background:var(--bg,var(--creme))}
+.sec::before,.final::before{content:"";position:absolute;left:0;right:0;top:-25px;height:26px;background:var(--bg,var(--creme));z-index:1;pointer-events:none;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 26'%3E%3Cpath d='M0 14C15 14 15 4 30 4S45 14 60 14 75 4 90 4 105 14 120 14V26H0Z'/%3E%3C/svg%3E") repeat-x 0 0/120px 26px;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 26'%3E%3Cpath d='M0 14C15 14 15 4 30 4S45 14 60 14 75 4 90 4 105 14 120 14V26H0Z'/%3E%3C/svg%3E") repeat-x 0 0/120px 26px}
+.in{max-width:560px;margin:0 auto;position:relative;z-index:2}
+.escuro{color:#fff}
+.selo{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:#fff;color:var(--verde-esc);font-size:14px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 3px 0 rgba(20,38,28,.1)}
+.escuro .selo{background:rgba(255,255,255,.14);color:#fff;box-shadow:none;border:2px solid rgba(255,255,255,.35)}
+.titulo{font-size:clamp(29px,8.4vw,44px);margin:14px 0 12px}
+.lead{font-size:clamp(18px,4.9vw,21px);color:var(--tinta2);font-weight:600}
+.escuro .lead{color:#E3F5EA}
+.destaque{background:linear-gradient(transparent 58%,rgba(232,185,74,.7) 58%);padding:0 3px;border-radius:3px}
+.escuro .destaque{background:linear-gradient(transparent 58%,rgba(232,185,74,.5) 58%)}
+
+/* balão do Cacá */
+.fala{display:flex;align-items:flex-end;gap:10px;margin:22px 0}
+.fala svg{flex:none;width:68px;height:75px}
+.fala p{background:#fff;color:var(--tinta);border-radius:20px 20px 20px 6px;padding:12px 16px;font-weight:800;font-size:17px;box-shadow:var(--sombra)}
+
+/* aparecer ao rolar */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.js .rv.on{opacity:1;transform:none}
+
+/* animações do Cacá */
+.asa-e{transform-origin:58px 124px;animation:asaE 2.4s ease-in-out infinite}
+.asa-d{transform-origin:142px 124px;animation:asaD 2.4s ease-in-out infinite}
+@keyframes asaE{0%,70%,100%{transform:rotate(0)}80%{transform:rotate(14deg)}90%{transform:rotate(-4deg)}}
+@keyframes asaD{0%,70%,100%{transform:rotate(0)}80%{transform:rotate(-14deg)}90%{transform:rotate(4deg)}}
+.olhos{transform-origin:100px 80px;animation:pisca 4.5s infinite}
+@keyframes pisca{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.voa .asa-e,.voa .asa-d{animation-duration:.35s;animation-iteration-count:4}
+@keyframes pula{0%{transform:none}35%{transform:translateY(-24px) rotate(-6deg)}70%{transform:translateY(0) rotate(4deg)}100%{transform:none}}
+.pula{animation:pula .7s cubic-bezier(.3,1.4,.5,1)}
+.onda{fill:none;stroke:currentColor;stroke-linecap:round;animation:onda 2s ease-out infinite;transform-box:fill-box;transform-origin:0 50%}
+.onda.d2{animation-delay:.4s}.onda.d3{animation-delay:.8s}
+@keyframes onda{0%{opacity:0;transform:scale(.6)}30%{opacity:1}100%{opacity:0;transform:scale(1.25)}}
+.estrela{animation:brilha 2.4s ease-in-out infinite alternate}
+@keyframes brilha{from{opacity:.25}to{opacity:1}}
+
+/* ---------- progresso e navegação ---------- */
+.prog{position:fixed;left:0;right:0;top:0;height:6px;z-index:40;pointer-events:none;background:rgba(27,77,46,.14)}
+.prog i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--viva),var(--ouro));border-radius:0 6px 6px 0}
+.nav{position:fixed;z-index:45;left:50%;bottom:calc(8px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(calc(100% - 16px),440px);
+  display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:5px;background:rgba(255,255,255,.96);border-radius:24px;
+  box-shadow:0 10px 30px -10px rgba(20,38,28,.55),0 0 0 2px rgba(27,77,46,.12);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:50px;border-radius:18px;text-decoration:none;color:var(--tinta2);font-size:11.5px;font-weight:800;transition:background .2s,color .2s}
+.nav a span{font-size:20px;line-height:1}
+.nav a[aria-current="true"]{background:var(--verde-cl);color:var(--verde-esc)}
+
+/* ---------- CAPA (noite na cidade) ---------- */
+.capa{position:relative;min-height:min(calc(100vh - var(--nav-h) - 10px),900px);min-height:min(calc(100svh - var(--nav-h) - 10px),900px);display:flex;flex-direction:column;overflow:hidden;
+  background:linear-gradient(180deg,#0B2233 0%,#0F2B3D 45%,#1B4D2E 100%);color:#fff}
+.lua{position:absolute;right:34px;top:calc(8px + env(safe-area-inset-top));width:40px;height:40px;border-radius:50%;box-shadow:12px 6px 0 0 #FFF1C4;filter:drop-shadow(0 0 10px rgba(255,241,196,.45));z-index:2}
+.ceu-estrelas{position:absolute;inset:0;width:100%;height:60%}
+.capa-topo{position:relative;z-index:3;display:flex;padding:calc(14px + env(safe-area-inset-top)) 16px 0}
+.marca{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.92);border-radius:999px;padding:5px 12px 5px 5px;font-size:12.5px;font-weight:900;color:var(--verde-esc);letter-spacing:.03em}
+.brasao{display:inline-block;width:30px;height:32px;background:url("data:image/png;base64,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") center/contain no-repeat}
+.capa-txt{position:relative;z-index:3;padding:14px 16px 0;text-align:center;max-width:620px;margin:0 auto}
+.capa h1{font-size:clamp(34px,10.4vw,58px);line-height:1;text-shadow:0 3px 0 rgba(0,0,0,.25)}
+.capa h1 .ouro{color:var(--ouro)}
+.capa .chamada{margin:14px auto 0;max-width:30ch;font-size:clamp(17px,4.8vw,20px);font-weight:700;color:#E3F5EA}
+.capa .acoes{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:16px}
+.status{display:none;margin-top:2px;font-size:14px;font-weight:800;color:var(--verde-esc);background:rgba(255,255,255,.94);padding:6px 12px;border-radius:999px}
+.status.on{display:inline-block}
+.status.esperando{color:#7A5A00}
+.nota-off{font-size:13.5px;font-weight:600;color:#CFE6D7;max-width:34ch;margin:2px auto 0}
+.salvo .capa .nota-off{display:none}
+.capa-cidade{position:relative;margin-top:auto;height:clamp(160px,27vh,230px);z-index:2}
+.capa-cidade svg.casas{position:absolute;left:0;right:0;bottom:0;width:100%;height:100%}
+.capa-cidade .caca{position:absolute;left:50%;bottom:6px;width:clamp(120px,34vw,160px);height:auto;aspect-ratio:200/220;transform:translateX(-50%)}
+.janela{animation:janela 5s ease-in-out infinite}
+@keyframes janela{0%,60%{opacity:1}70%,100%{opacity:.25}}
+
+/* ---------- GUIA ---------- */
+#guia{--bg:var(--verde-cl)}
+.guia{display:flex;flex-direction:column;align-items:center;margin-top:12px}
+.balao{position:relative;background:#fff;border-radius:24px;padding:14px 18px;font-size:19px;font-weight:800;text-align:center;box-shadow:var(--sombra);min-height:86px;display:flex;align-items:center;justify-content:center;width:100%}
+.balao::after{content:"";position:absolute;left:50%;bottom:-14px;margin-left:-14px;border:14px solid transparent;border-top-color:#fff;border-bottom:0}
+.btn-caca{margin-top:16px;background:none;border:0;padding:6px;cursor:pointer;border-radius:30px;touch-action:manipulation}
+.btn-caca svg{width:min(52vw,210px);height:auto;aspect-ratio:200/220}
+.dica-toque{display:inline-block;margin-top:6px;font-weight:900;font-size:15px;color:var(--verde-esc);background:#fff;padding:8px 14px;border-radius:999px;box-shadow:0 3px 0 rgba(20,38,28,.1)}
+.dica-card{margin-top:16px;background:var(--ouro-cl);border:3px dashed var(--ouro);border-radius:18px;padding:12px 14px;font-weight:800;font-size:17px;text-align:center;min-height:56px}
+
+/* ---------- SOM INVISÍVEL ---------- */
+#invisivel{--bg:var(--ceu)}
+.cena-som{margin-top:18px;background:#fff;border-radius:26px;box-shadow:var(--sombra);overflow:hidden}
+.cena-som svg{width:100%;height:auto}
+.cena-som .ondas-viaja{color:var(--azul);opacity:0}
+.cena-som.tocando .ondas-viaja{opacity:1}
+.orelha-brilho{opacity:0;transition:opacity .4s}
+.cena-som.tocando .orelha-brilho{opacity:1}
+.leg-som{padding:12px 16px;text-align:center;font-weight:900;font-size:17px;min-height:56px;display:flex;align-items:center;justify-content:center}
+.dois-sons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.dois-sons div{background:#fff;border-radius:20px;padding:12px;text-align:center;box-shadow:var(--sombra);font-weight:800;font-size:15.5px}
+.dois-sons b{display:block;font-size:18px;margin-bottom:4px}
+.dois-sons .tranq{border-top:6px solid var(--viva)}
+.dois-sons .alto{border-top:6px solid var(--coral)}
+
+/* ---------- MEDIDOR (do baixinho ao alto) ---------- */
+#medidor{--bg:var(--ouro-cl)}
+.medidor{margin-top:18px;background:#fff;border-radius:28px;box-shadow:var(--sombra);padding:18px 16px;text-align:center}
+.medidor .emo{font-size:62px;line-height:1.1}
+.medidor .nome{font-size:24px;font-weight:900;margin-top:4px}
+.barras{display:flex;gap:6px;justify-content:center;align-items:flex-end;height:64px;margin:14px 0 10px}
+.barras i{width:26px;border-radius:8px;background:#E3E8E4;transition:background .3s}
+.barras i:nth-child(1){height:20%}.barras i:nth-child(2){height:40%}.barras i:nth-child(3){height:60%}.barras i:nth-child(4){height:80%}.barras i:nth-child(5){height:100%}
+.barras i.on{background:var(--viva)}
+.barras.alto i.on{background:var(--coral)}
+.selo-som{display:inline-block;padding:8px 16px;border-radius:999px;font-weight:900;font-size:17px}
+.selo-som.tranq{background:var(--verde-cl);color:var(--verde-esc);border:3px solid var(--viva)}
+.selo-som.alto{background:var(--coral-cl);color:var(--coral-esc);border:3px solid var(--coral)}
+.medidor .exp{margin-top:10px;font-weight:700;font-size:16.5px;color:var(--tinta2);min-height:3em}
+.range-box{margin-top:14px}
+.range-box label{display:block;font-weight:900;font-size:15px;color:var(--verde-esc);margin-bottom:6px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;cursor:pointer;touch-action:pan-y}
+input[type=range]::-webkit-slider-runnable-track{height:14px;border-radius:999px;background:linear-gradient(90deg,var(--viva) 0 45%,var(--ouro) 55%,var(--coral) 100%)}
+input[type=range]::-moz-range-track{height:14px;border-radius:999px;background:linear-gradient(90deg,var(--viva) 0 45%,var(--ouro) 55%,var(--coral) 100%)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:40px;height:40px;margin-top:-13px;border-radius:50%;background:#fff;border:5px solid var(--verde-esc);box-shadow:0 4px 10px rgba(0,0,0,.3)}
+input[type=range]::-moz-range-thumb{width:32px;height:32px;border-radius:50%;background:#fff;border:5px solid var(--verde-esc)}
+.extremos{display:flex;justify-content:space-between;font-size:13px;font-weight:900;color:var(--tinta2)}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.chip{min-height:52px;border-radius:16px;border:3px solid #DCE7DF;background:#F8FBF9;font-weight:800;font-size:14px;cursor:pointer;padding:6px 4px;line-height:1.15;touch-action:manipulation}
+.chip[aria-pressed="true"]{border-color:var(--verde-esc);background:var(--verde-cl)}
+
+/* ---------- QUEM SOFRE ---------- */
+#quem{--bg:var(--coral-cl)}
+.pessoas{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.pessoa{background:#fff;border:3px solid transparent;border-radius:22px;padding:14px 10px;box-shadow:var(--sombra);text-align:center;cursor:pointer;touch-action:manipulation;transition:border-color .3s,background .3s}
+.pessoa .emo{font-size:42px;line-height:1.1;display:block}
+.pessoa .rea{font-size:26px;display:block;margin-top:2px}
+.pessoa b{display:block;font-size:17px;margin-top:4px}
+.pessoa span.t{display:block;font-size:14.5px;font-weight:700;color:var(--tinta2);margin-top:3px;line-height:1.3}
+.pessoa .acao{display:block;margin-top:8px;font-size:12.5px;font-weight:900;color:var(--coral-esc)}
+.pessoa[aria-pressed="true"]{border-color:var(--viva);background:#F1FBF4}
+.pessoa[aria-pressed="true"] .acao{color:var(--verde-esc)}
+.contador{margin-top:14px;text-align:center;font-weight:900;color:var(--tinta2)}
+.msg-grande{margin-top:18px;text-align:center;font-size:clamp(21px,6vw,27px);font-weight:900;color:var(--coral-esc)}
+
+/* ---------- DIREITO AO SOSSEGO (dia/noite) ---------- */
+#direito{--bg:#0F2B3D;background:linear-gradient(180deg,#0F2B3D,#133A4F)}
+.direitos{display:grid;gap:10px;margin-top:16px}
+.direitos div{background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.22);border-radius:18px;padding:12px 14px;font-weight:800;font-size:18px;display:flex;gap:10px;align-items:center}
+.direitos span{font-size:26px}
+.cena-dn{margin-top:20px;border-radius:26px;overflow:hidden;box-shadow:0 14px 34px -14px rgba(0,0,0,.6);background:#fff}
+.cena-dn svg{width:100%;height:auto}
+.cena-dn .ceu-dia{transition:opacity .8s}
+.cena-dn.noite .ceu-dia{opacity:0}
+.cena-dn .sol-dn{transition:transform .8s,opacity .8s}
+.cena-dn.noite .sol-dn{transform:translateY(80px);opacity:0}
+.cena-dn .lua-dn,.cena-dn .zzz,.cena-dn .estrelas-dn{opacity:0;transition:opacity .8s .3s}
+.cena-dn.noite .lua-dn,.cena-dn.noite .zzz,.cena-dn.noite .estrelas-dn{opacity:1}
+.cena-dn .vol{padding:12px 16px;color:var(--tinta);font-weight:900;font-size:17px;text-align:center;min-height:58px;display:flex;align-items:center;justify-content:center}
+.alterna{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.alterna .btn{font-size:17px}
+.alterna .btn[aria-pressed="true"]{outline:4px solid #fff;outline-offset:2px}
+.faixa-noite{margin-top:20px;background:var(--ouro);color:var(--tinta);border-radius:22px;padding:16px;text-align:center;font-size:clamp(20px,5.8vw,26px);font-weight:900}
+
+/* ---------- A CIPA CUIDA (decibelímetro) ---------- */
+#cipa{--bg:var(--verde-cl)}
+.cena-db{margin-top:18px;background:#fff;border-radius:26px;box-shadow:var(--sombra);overflow:hidden}
+.cena-db svg{width:100%;height:auto;background:linear-gradient(180deg,#E3F0FF,#FFFFFF)}
+.ponteiro{transform-origin:260px 150px;transform:rotate(-70deg);transition:transform 1.4s cubic-bezier(.3,1.3,.5,1)}
+.caixa-vibra{transform-box:fill-box;transform-origin:50% 50%}
+.cena-db.alto .caixa-vibra{animation:vibra .12s linear infinite}
+@keyframes vibra{0%{transform:translate(0,0)}25%{transform:translate(1.5px,-1px)}50%{transform:translate(-1.5px,1px)}75%{transform:translate(1px,1px)}100%{transform:translate(0,0)}}
+.cena-db .ondas-carro{color:var(--coral);opacity:0}
+.cena-db.alto .ondas-carro{opacity:1}
+.leitura{padding:12px 16px;text-align:center;font-weight:900;font-size:18px;min-height:58px;display:flex;align-items:center;justify-content:center}
+.leitura.alto{color:var(--coral-esc);background:var(--coral-cl)}
+.leitura.ok{color:var(--verde-esc);background:var(--verde-cl)}
+.botoes-db{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.botoes-db .btn{font-size:16px;padding:10px 8px;min-height:64px}
+.info-cipa{display:grid;gap:10px;margin-top:18px}
+.info-cipa div{background:#fff;border-radius:18px;padding:12px 14px;font-weight:800;font-size:17px;box-shadow:var(--sombra);display:flex;gap:12px;align-items:center}
+.info-cipa span{font-size:28px;flex:none}
+
+/* ---------- JOGO ---------- */
+#jogo{--bg:var(--ceu)}
+.pontos{display:flex;justify-content:space-between;align-items:center;font-weight:900;font-size:15px;color:var(--azul-esc);margin-bottom:10px}
+.estrelas{letter-spacing:2px}
+.situ{background:#fff;border-radius:28px;box-shadow:var(--sombra);padding:22px 16px;text-align:center}
+.situ .emo{font-size:64px;line-height:1.1}
+.situ .txt{font-size:clamp(20px,5.8vw,24px);font-weight:900;margin-top:8px;min-height:2.6em;display:flex;align-items:center;justify-content:center}
+.escolha{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.escolha .btn{font-size:18px;padding:12px 8px;min-height:64px}
+.resp{margin-top:14px;border-radius:18px;padding:12px 14px;font-weight:700;font-size:17px;text-align:left}
+.resp.ok{background:#E3F8E9;border:3px solid var(--viva)}
+.resp.quase{background:#FFF4D6;border:3px solid var(--ouro)}
+.resp b{display:block;font-size:19px;margin-bottom:3px}
+.mini{width:80px;height:88px;margin:0 auto}
+
+/* ---------- MISSÃO ---------- */
+#missao{--bg:var(--ouro-cl)}
+.missoes{display:grid;gap:10px;margin-top:20px}
+.missao{display:flex;align-items:center;gap:14px;width:100%;text-align:left;border:3px solid transparent;background:#fff;border-radius:20px;padding:14px 16px;cursor:pointer;box-shadow:var(--sombra);
+  min-height:72px;font-weight:800;font-size:17.5px;transition:background .25s,border-color .25s;touch-action:manipulation}
+.missao .emo{font-size:28px;flex:none;width:38px;text-align:center}
+.missao .chk{margin-left:auto;flex:none;width:38px;height:38px;border-radius:12px;border:3px solid #CFDCD3;display:grid;place-items:center;font-size:22px;color:#fff;transition:all .25s}
+.missao[aria-pressed="true"]{background:#E3F8E9;border-color:var(--viva)}
+.missao[aria-pressed="true"] .chk{background:var(--verde);border-color:var(--verde)}
+.missao[aria-pressed="true"] .chk::after{content:"✔"}
+.missao .ok-txt{display:block;font-size:13px;color:var(--verde-esc);font-weight:900;letter-spacing:.04em}
+.barra-missao{height:16px;border-radius:999px;background:#fff;margin-top:18px;overflow:hidden;box-shadow:inset 0 2px 4px rgba(0,0,0,.08)}
+.barra-missao i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--viva),var(--ouro));transition:width .4s}
+.conta-missao{text-align:center;font-weight:900;margin-top:8px;color:var(--tinta2)}
+.medalha{display:none;margin-top:22px;text-align:center;background:linear-gradient(160deg,#fff,#FFF6DD);border:4px solid var(--ouro);border-radius:28px;padding:22px 18px;box-shadow:var(--sombra)}
+.medalha.on{display:block;animation:abre .6s ease both}
+@keyframes abre{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.medalha .m{font-size:72px;line-height:1;animation:pulsa 1.8s ease-in-out infinite}
+@keyframes pulsa{50%{transform:scale(1.08)}}
+.medalha h3{font-size:26px;margin-top:8px;color:var(--verde-esc)}
+.medalha label{display:block;font-weight:800;margin-top:14px;font-size:16px}
+.medalha input{width:100%;margin-top:8px;min-height:52px;border-radius:14px;border:3px solid #D6E2DA;padding:10px 14px;font-weight:800;font-size:19px;text-align:center}
+.medalha input:focus{outline:4px solid var(--ouro);outline-offset:1px}
+.certificado{margin-top:12px;font-size:19px;font-weight:900;color:var(--verde-esc);min-height:1.4em}
+
+/* ---------- QUIZ ---------- */
+#quiz{--bg:var(--verde-cl)}
+.quiz-prog{display:flex;gap:6px;justify-content:center;margin-bottom:12px}
+.quiz-prog i{width:34px;height:10px;border-radius:999px;background:#CFE2D5}
+.quiz-prog i.on{background:var(--ouro)}
+.quiz-prog i.feito{background:var(--viva)}
+.perg{background:#fff;border-radius:28px;box-shadow:var(--sombra);padding:20px 16px}
+.perg .n{font-size:14px;font-weight:900;color:var(--verde-esc);letter-spacing:.08em;text-align:center}
+.perg h3{font-size:clamp(21px,6vw,26px);text-align:center;margin:8px 0 16px}
+.opcoes{display:grid;gap:10px}
+.opcoes.duplo{grid-template-columns:1fr 1fr}
+.opc{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:64px;border-radius:18px;border:3px solid #D3E2D8;background:#F7FBF8;cursor:pointer;
+  padding:10px 12px;font-weight:900;font-size:17.5px;flex-wrap:wrap;touch-action:manipulation}
+.opc .emo{font-size:24px}
+.opc .tag{flex-basis:100%;font-size:12px;font-weight:900;text-align:center}
+.opc.certa{border-color:var(--viva);background:#E3F8E9}
+.opc.errada{border-color:var(--ouro);background:#FFF4D6}
+.opc[disabled]{cursor:default}
+.quiz-fim{text-align:center}
+.quiz-fim h3{font-size:28px;margin:6px 0 8px;color:var(--verde-esc)}
+.quiz-fim .est{font-size:34px;letter-spacing:4px;margin:6px 0}
+
+/* ---------- AJUDA ---------- */
+#ajuda{--bg:var(--coral-cl)}
+.passos-ajuda{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+.passos-ajuda li{display:flex;gap:14px;align-items:center;background:#fff;border-radius:20px;padding:14px 16px;box-shadow:var(--sombra);font-weight:800;font-size:18px}
+.passos-ajuda .num{flex:none;width:44px;height:44px;border-radius:14px;background:var(--verde-esc);color:#fff;display:grid;place-items:center;font-size:22px;font-weight:900}
+.passos-ajuda small{display:block;font-size:15px;color:var(--tinta2);font-weight:600}
+.cartao-190{margin-top:20px;text-align:center;background:#fff;border:4px solid var(--coral-esc);border-radius:28px;padding:22px 16px;box-shadow:var(--sombra)}
+.cartao-190 .rotulo{font-size:15px;font-weight:900;letter-spacing:.1em;color:var(--coral-esc)}
+.cartao-190 .num190{font-size:clamp(72px,24vw,104px);font-weight:900;line-height:1;color:var(--tinta)}
+.cartao-190 p{font-weight:700;color:var(--tinta2);margin:6px 0 16px;font-size:16px}
+.cartao-190 .obs{font-size:14px;margin:12px 0 0}
+.nao-sozinho{margin-top:18px;text-align:center;font-size:clamp(20px,5.6vw,24px);font-weight:900;color:var(--verde-esc)}
+.adultos{margin-top:18px;background:#fff;border-radius:18px;box-shadow:var(--sombra);overflow:hidden}
+.adultos summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:900;font-size:16px;color:var(--verde-esc);display:flex;align-items:center;gap:8px;min-height:52px}
+.adultos summary::-webkit-details-marker{display:none}
+.adultos summary::after{content:"＋";margin-left:auto;font-size:20px}
+.adultos[open] summary::after{content:"－"}
+.adultos .tec{padding:0 16px 16px;font-size:14.5px;line-height:1.5;color:var(--tinta2);font-weight:500}
+.adultos .tec ul{margin:6px 0 10px;padding-left:18px}
+.adultos .tec li{margin:6px 0}
+.adultos .tec strong{color:var(--tinta)}
+.adultos .tec .conf{font-size:13px;margin-top:8px}
+
+/* ---------- ENCERRAMENTO ---------- */
+.final{--bg:#0F2B3D;position:relative;overflow:hidden;background:linear-gradient(180deg,#0F2B3D 0,#133A4F 260px,#1B4D2E 261px,#1B4D2E 100%);
+  padding:60px 16px calc(var(--nav-h) + 40px + env(safe-area-inset-bottom));color:#fff}
+.final-cena{position:relative;max-width:560px;margin:0 auto;height:270px}
+.final-cena svg{position:absolute;inset:0;width:100%;height:100%}
+.final-txt{position:relative;z-index:2;max-width:560px;margin:10px auto 0;text-align:center}
+.final-txt h2{font-size:clamp(31px,9vw,48px);color:var(--ouro);text-shadow:0 3px 0 rgba(0,0,0,.25)}
+.final-txt .msg{font-size:clamp(18px,5vw,21px);font-weight:800;margin:14px auto 0;max-width:32ch}
+.assina{margin:24px auto 0;display:flex;align-items:center;justify-content:center;gap:12px;background:rgba(255,255,255,.96);color:var(--tinta);border-radius:22px;padding:12px 16px;max-width:420px;text-align:left}
+.assina .brasao{width:48px;height:52px;flex:none}
+.assina b{display:block;font-size:16px;letter-spacing:.05em}
+.assina span{display:block;font-size:14px;font-weight:700;color:var(--tinta2)}
+.lema{margin-top:16px;font-size:17px;font-weight:800;font-style:italic;color:var(--ouro)}
+.final-acoes{display:grid;gap:12px;margin:26px auto 0;max-width:400px}
+.final-acoes .btn{font-size:17px}
+.final-acoes .nota-off{color:#CFE6D7}
+.creditos{margin-top:26px;font-size:12.5px;color:#BFDCC9;font-weight:600;line-height:1.5}
+
+/* ---------- festa, aviso e folha ---------- */
+.festa{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
+.festa i{position:absolute;bottom:-40px;font-style:normal;animation:festa 2.6s cubic-bezier(.2,.6,.3,1) forwards}
+@keyframes festa{0%{transform:translate(0,0) scale(.6);opacity:1}100%{transform:translate(var(--dx),-105vh) scale(1.1) rotate(var(--r));opacity:.2}}
+.toast{position:fixed;left:50%;bottom:calc(var(--nav-h) + 22px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:var(--tinta);color:#fff;padding:12px 18px;border-radius:14px;
+  font-weight:800;font-size:15px;opacity:0;pointer-events:none;transition:all .25s;z-index:70;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.sheet{position:fixed;inset:0;z-index:80;background:rgba(20,38,28,.6);display:none;align-items:flex-end;justify-content:center}
+.sheet.show{display:flex}
+.sheet-box{width:100%;max-width:480px;background:#fff;border-radius:28px 28px 0 0;padding:22px 20px calc(24px + env(safe-area-inset-bottom));animation:sobeSheet .35s ease both}
+@keyframes sobeSheet{from{transform:translateY(100%)}to{transform:none}}
+.sheet-box svg{width:72px;height:79px;margin:0 auto 6px}
+.sheet-box h3{font-size:24px;text-align:center}
+.sheet-box .sub{text-align:center;color:var(--tinta2);font-weight:700;margin:6px 0 14px;font-size:16px}
+.sheet-box ol{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:10px}
+.sheet-box li{display:flex;gap:12px;align-items:center;background:var(--verde-cl);border-radius:16px;padding:12px 14px;font-weight:700;font-size:17px}
+.sheet-box li b{flex:none;width:36px;height:36px;border-radius:12px;background:var(--verde-esc);color:#fff;display:grid;place-items:center}
+
+@media (min-width:640px){
+  .sec{padding:84px 24px 96px}
+  .pessoas{grid-template-columns:repeat(3,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .js .rv{opacity:1;transform:none}
+  .cena-som.tocando .ondas-viaja .onda,.cena-db.alto .ondas-carro .onda{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== ILUSTRAÇÕES ORIGINAIS (sprite SVG) ===================== -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- CACÁ, o Carcará Guardião do Silêncio -->
+    <symbol id="caca" viewBox="0 0 200 220">
+      <path d="M80 190L100 214L120 190Z" fill="#F4E9D2" stroke="#5A3A22" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M86 200H114" stroke="#5A3A22" stroke-width="4"/>
+      <g fill="#F2C230" stroke="#B88F10" stroke-width="2"><rect x="80" y="190" width="12" height="20" rx="5"/><rect x="108" y="190" width="12" height="20" rx="5"/>
+        <ellipse cx="86" cy="211" rx="11" ry="5"/><ellipse cx="114" cy="211" rx="11" ry="5"/></g>
+      <g class="asa-e"><path d="M60 116Q22 128 24 182Q44 180 64 160Z" fill="#4A2E1A"/><path d="M34 168Q42 170 50 162M30 154Q40 156 50 148" fill="none" stroke="#F4E9D2" stroke-width="3" stroke-linecap="round"/></g>
+      <g class="asa-d"><path d="M140 116Q178 128 176 182Q156 180 136 160Z" fill="#4A2E1A"/><path d="M166 168Q158 170 150 162M170 154Q160 156 150 148" fill="none" stroke="#F4E9D2" stroke-width="3" stroke-linecap="round"/></g>
+      <ellipse cx="100" cy="150" rx="50" ry="50" fill="#5A3A22"/>
+      <ellipse cx="100" cy="148" rx="31" ry="38" fill="#F4E9D2"/>
+      <g fill="none" stroke="#8A6A48" stroke-width="2.4" stroke-linecap="round"><path d="M84 132Q92 136 100 132Q108 136 116 132"/><path d="M80 146Q90 150 100 146Q110 150 120 146"/><path d="M82 160Q91 164 100 160Q109 164 118 160"/><path d="M88 174Q94 177 100 174Q106 177 112 174"/></g>
+      <path d="M100 150L116 156V168Q116 178 100 184Q84 178 84 168V156Z" fill="#E8B94A" stroke="#B7860B" stroke-width="2.5"/>
+      <path d="M94 164H97L102 159V177L97 172H94Z" fill="#1B4D2E"/><path d="M105 163Q108 168 105 173" fill="none" stroke="#1B4D2E" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="100" cy="80" r="50" fill="#F4E9D2"/>
+      <path d="M50 74Q52 28 100 26Q148 28 150 74Q128 54 100 56Q72 54 50 74Z" fill="#2F1E12"/>
+      <path d="M132 36L156 28L146 44Z" fill="#2F1E12"/><path d="M140 44L162 42L150 54Z" fill="#2F1E12"/>
+      <ellipse cx="100" cy="96" rx="24" ry="17" fill="#F07A3A"/>
+      <g class="olhos"><circle cx="79" cy="80" r="12" fill="#fff" stroke="#2F1E12" stroke-width="2"/><circle cx="121" cy="80" r="12" fill="#fff" stroke="#2F1E12" stroke-width="2"/>
+        <circle cx="81" cy="81" r="7" fill="#2F1E12"/><circle cx="119" cy="81" r="7" fill="#2F1E12"/><circle cx="83.5" cy="78" r="2.6" fill="#fff"/><circle cx="121.5" cy="78" r="2.6" fill="#fff"/></g>
+      <path d="M66 64Q78 58 90 64M110 64Q122 58 134 64" fill="none" stroke="#2F1E12" stroke-width="3.2" stroke-linecap="round"/>
+      <path d="M90 92Q100 86 110 92" fill="#F2C230"/>
+      <path d="M88 93Q100 86 112 93Q110 110 100 118Q92 108 88 93Z" fill="#8FA5B8" stroke="#5E7285" stroke-width="2"/>
+      <path d="M96 110Q100 121 105 110" fill="#3E4E5C"/>
+      <circle cx="68" cy="98" r="6" fill="#F28A8A" opacity=".5"/><circle cx="132" cy="98" r="6" fill="#F28A8A" opacity=".5"/>
+    </symbol>
+
+    <!-- Orelha -->
+    <symbol id="orelha" viewBox="0 0 80 110">
+      <path d="M58 20Q30 0 14 26Q4 44 14 60Q22 72 24 88Q26 104 42 104Q56 104 58 90Q60 78 68 68Q80 50 70 32Q66 24 58 20Z" fill="#E5AE84" stroke="#B87A52" stroke-width="3"/>
+      <path d="M52 34Q34 24 26 40Q22 50 32 58Q40 64 38 76" fill="none" stroke="#B87A52" stroke-width="4" stroke-linecap="round"/>
+      <path d="M46 48Q40 44 36 50Q34 56 40 60" fill="none" stroke="#B87A52" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Caixa de som -->
+    <symbol id="caixa" viewBox="0 0 60 80">
+      <rect x="4" y="4" width="52" height="72" rx="10" fill="#2F3B35" stroke="#14261C" stroke-width="3"/>
+      <circle cx="30" cy="24" r="9" fill="#58685F" stroke="#14261C" stroke-width="3"/><circle cx="30" cy="24" r="3" fill="#14261C"/>
+      <circle cx="30" cy="54" r="15" fill="#58685F" stroke="#14261C" stroke-width="3"/><circle cx="30" cy="54" r="6" fill="#14261C"/>
+    </symbol>
+
+    <!-- Carro -->
+    <symbol id="carro" viewBox="0 0 160 90">
+      <path d="M14 58Q14 44 28 42L46 22Q52 16 62 16H104Q114 16 120 24L134 42Q150 44 150 58V66H14Z" fill="#3987E5" stroke="#1F5FAF" stroke-width="3"/>
+      <path d="M54 26H80V42H40Z" fill="#CFE6FF"/><path d="M86 26H108L122 42H86Z" fill="#CFE6FF"/>
+      <circle cx="44" cy="68" r="14" fill="#2F3B35"/><circle cx="44" cy="68" r="6" fill="#B9C4BE"/>
+      <circle cx="122" cy="68" r="14" fill="#2F3B35"/><circle cx="122" cy="68" r="6" fill="#B9C4BE"/>
+      <rect x="140" y="48" width="12" height="8" rx="3" fill="#FFE27A"/>
+    </symbol>
+
+    <!-- Casa -->
+    <symbol id="casa" viewBox="0 0 100 100">
+      <path d="M6 46L50 10L94 46Z" fill="#B7860B"/>
+      <rect x="14" y="42" width="72" height="56" rx="4" fill="#F4E9D2"/>
+      <rect class="janela" x="24" y="54" width="18" height="16" rx="3" fill="#FFE27A"/>
+      <rect x="58" y="54" width="18" height="16" rx="3" fill="#FFE27A"/>
+      <rect x="42" y="72" width="16" height="26" rx="3" fill="#2E7D4F"/>
+    </symbol>
+
+    <!-- Criança e agente da CIPA -->
+    <symbol id="crianca" viewBox="0 0 80 150">
+      <rect x="24" y="104" width="12" height="40" rx="6" fill="#34496B"/><rect x="44" y="104" width="12" height="40" rx="6" fill="#34496B"/>
+      <ellipse cx="30" cy="146" rx="10" ry="5" fill="#14261C"/><ellipse cx="50" cy="146" rx="10" ry="5" fill="#14261C"/>
+      <path d="M22 60Q40 52 58 60L60 108H20Z" fill="currentColor"/>
+      <path d="M22 64L10 96M58 64L70 96" stroke="#C98B5E" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="40" cy="34" r="22" fill="#C98B5E"/>
+      <path d="M18 32Q18 8 40 10Q62 8 62 32Q56 20 40 20Q26 20 18 32Z" fill="#3B2A20"/>
+      <circle cx="32" cy="36" r="3" fill="#14261C"/><circle cx="48" cy="36" r="3" fill="#14261C"/>
+      <path d="M33 45Q40 50 47 45" fill="none" stroke="#6B3A2A" stroke-width="2.6" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="agente" viewBox="0 0 90 190">
+      <rect x="28" y="120" width="14" height="62" rx="7" fill="#1B4D2E"/><rect x="48" y="120" width="14" height="62" rx="7" fill="#1B4D2E"/>
+      <ellipse cx="34" cy="184" rx="12" ry="6" fill="#14261C"/><ellipse cx="56" cy="184" rx="12" ry="6" fill="#14261C"/>
+      <path d="M24 64Q45 54 66 64L68 126H22Z" fill="#2E7D4F"/>
+      <path d="M24 68L12 116M66 68L78 116" stroke="#2E7D4F" stroke-width="11" stroke-linecap="round"/>
+      <circle cx="12" cy="118" r="5" fill="#C98B5E"/><circle cx="78" cy="118" r="5" fill="#C98B5E"/>
+      <path d="M54 74l3 6 6 1-4.5 4 1 6-5.5-3-5.5 3 1-6-4.5-4 6-1z" fill="#E8B94A"/>
+      <circle cx="45" cy="38" r="23" fill="#C98B5E"/>
+      <path d="M20 30Q22 8 45 8Q68 8 70 30Z" fill="#1B4D2E"/><path d="M18 30H78" stroke="#1B4D2E" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="45" cy="19" r="4" fill="#E8B94A"/>
+      <circle cx="37" cy="40" r="3" fill="#14261C"/><circle cx="53" cy="40" r="3" fill="#14261C"/>
+      <path d="M38 50Q45 55 52 50" fill="none" stroke="#6B3A2A" stroke-width="2.6" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="prog" aria-hidden="true"><i id="progFill"></i></div>
+
+<main>
+
+<!-- ===================== 1. CAPA ===================== -->
+<header class="capa" id="inicio" data-nav="inicio">
+  <svg class="ceu-estrelas" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
+    <g fill="#FFF1C4"><circle class="estrela" cx="30" cy="40" r="2"/><circle class="estrela" cx="90" cy="90" r="1.6" style="animation-delay:-1s"/><circle class="estrela" cx="150" cy="30" r="2.2" style="animation-delay:-.5s"/>
+      <circle class="estrela" cx="220" cy="70" r="1.6" style="animation-delay:-1.6s"/><circle class="estrela" cx="260" cy="20" r="2" style="animation-delay:-.8s"/><circle class="estrela" cx="340" cy="150" r="1.8" style="animation-delay:-2s"/>
+      <circle class="estrela" cx="60" cy="160" r="1.6" style="animation-delay:-1.2s"/><circle class="estrela" cx="380" cy="60" r="1.6" style="animation-delay:-.3s"/><circle class="estrela" cx="190" cy="140" r="1.4" style="animation-delay:-1.8s"/></g>
+  </svg>
+  <div class="lua" aria-hidden="true"></div>
+
+  <div class="capa-topo">
+    <div class="marca"><span class="brasao" role="img" aria-label="Brasão da CIPA Monte Roraima"></span>CIPA · PMRR · Roraima</div>
+  </div>
+
+  <div class="capa-txt">
+    <h1>Silêncio também é <span class="ouro">direito</span></h1>
+    <p class="chamada">Vamos descobrir por que o barulho alto pode incomodar pessoas e animais?</p>
+    <div class="acoes">
+      <a class="btn" href="#guia">🔊 COMEÇAR A AVENTURA</a>
+      <button class="btn branco peq js-instalar" type="button">📲 SALVAR PARA USAR OFFLINE</button>
+      <span class="status js-status" role="status" aria-live="polite"></span>
+      <p class="nota-off">Abra uma vez com internet. Depois você poderá consultar offline.</p>
+    </div>
+  </div>
+
+  <div class="capa-cidade" aria-hidden="true">
+    <svg class="casas" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice">
+      <path d="M0 120L30 112L52 70L66 64H170L184 72L202 108L240 112L270 88L286 82H342L354 90L372 112L400 114V200H0Z" fill="#244F3A"/>
+      <use href="#casa" x="6" y="110" width="80" height="80"/>
+      <use href="#casa" x="300" y="104" width="90" height="90"/>
+      <g color="#E8B94A"><path class="onda" d="M86 140Q94 150 86 160" stroke-width="3"/><path class="onda d2" d="M92 132Q104 150 92 168" stroke-width="3"/></g>
+      <rect y="186" width="400" height="14" fill="#1B4D2E"/>
+    </svg>
+    <svg class="caca" viewBox="0 0 200 220"><use href="#caca"/></svg>
+  </div>
+</header>
+
+<!-- ===================== 2. CONHEÇA O CARCARÁ GUARDIÃO ===================== -->
+<section class="sec" id="guia" data-nav="inicio" aria-labelledby="t-guia">
+  <div class="in">
+    <span class="selo rv">🦅 Seu guia</span>
+    <h2 class="titulo rv" id="t-guia">Oi! Eu sou o <span class="destaque">Cacá</span>!</h2>
+    <p class="lead rv">Sou um carcará, ave que vive em Roraima. Tenho ouvido atento e sou o Guardião do Silêncio.</p>
+    <div class="guia rv">
+      <div class="balao" id="balaoCaca" aria-live="polite">“Oi! Eu sou o Carcará Guardião do Silêncio!”</div>
+      <button class="btn-caca" id="btnCaca" type="button" aria-label="Tocar no Cacá, o carcará">
+        <svg viewBox="0 0 200 220" aria-hidden="true"><use href="#caca"/></svg>
+      </button>
+      <span class="dica-toque">👆 TOQUE NO CARCARÁ</span>
+    </div>
+    <p class="dica-card rv" id="dicaCaca" aria-live="polite">💡 Dica: toque no Cacá para ganhar dicas!</p>
+  </div>
+</section>
+
+<!-- ===================== 3. O SOM A GENTE NÃO VÊ, MAS SENTE ===================== -->
+<section class="sec" id="invisivel" data-nav="sons" aria-labelledby="t-inv">
+  <div class="in">
+    <span class="selo rv">👂 O som</span>
+    <h2 class="titulo rv" id="t-inv">O som a gente não vê, mas sente</h2>
+    <p class="lead rv">O som é invisível. Ele viaja pelo ar até chegar ao nosso ouvido.</p>
+    <div class="cena-som rv" id="cenaSom">
+      <svg viewBox="0 0 360 200" role="img" aria-labelledby="somTit">
+        <title id="somTit">Uma caixa de som envia ondas pelo ar até a orelha de uma criança.</title>
+        <rect width="360" height="200" fill="#EEF6FF"/><rect y="170" width="360" height="30" fill="#CDEBD7"/>
+        <use href="#caixa" x="30" y="70" width="60" height="80"/>
+        <g class="ondas-viaja" color="#3987E5">
+          <path class="onda" d="M104 100Q116 110 104 120" stroke-width="4"/>
+          <path class="onda d2" d="M126 88Q146 110 126 132" stroke-width="4"/>
+          <path class="onda d3" d="M150 76Q178 110 150 144" stroke-width="4"/>
+          <path class="onda" d="M176 66Q212 110 176 154" stroke-width="4" style="animation-delay:1.2s"/>
+        </g>
+        <circle class="orelha-brilho" cx="262" cy="100" r="46" fill="#E8B94A" opacity=".35"/>
+        <use href="#orelha" x="232" y="50" width="62" height="96"/>
+        <use href="#crianca" x="300" y="70" width="52" height="98" style="color:#2EA76A"/>
+      </svg>
+      <p class="leg-som" id="legSom" aria-live="polite">Toque no botão para ligar o som.</p>
+    </div>
+    <button class="btn azul largo rv" id="btnSom" type="button" style="margin-top:14px" aria-pressed="false">🔔 FAZER UM SOM</button>
+    <div class="dois-sons rv">
+      <div class="tranq"><b>✅ Tranquilos</b>Alguns sons são calmos e gostosos de ouvir.</div>
+      <div class="alto"><b>⚠️ Altos demais</b>Outros ficam altos demais e incomodam.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 4. DO BEM BAIXINHO AO BEM ALTO ===================== -->
+<section class="sec" id="medidor" data-nav="sons" aria-labelledby="t-med">
+  <div class="in">
+    <span class="selo rv">🎚️ Medidor de sons</span>
+    <h2 class="titulo rv" id="t-med">Do bem baixinho ao bem alto</h2>
+    <p class="lead rv">Arraste o marcador ou toque nos sons para descobrir se ele é tranquilo ou muito alto.</p>
+    <div class="medidor rv" aria-live="polite">
+      <div class="emo" id="medEmo" aria-hidden="true">🤫</div>
+      <div class="nome" id="medNome">Sussurro</div>
+      <div class="barras" id="medBarras" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <span class="selo-som tranq" id="medSelo">✅ SOM TRANQUILO</span>
+      <p class="exp" id="medExp"></p>
+      <div class="range-box">
+        <label for="somRange">👉 ARRASTE O MARCADOR</label>
+        <input type="range" id="somRange" min="0" max="5" step="1" value="0" aria-valuetext="Sussurro">
+        <div class="extremos" aria-hidden="true"><span>🤫 baixinho</span><span>bem alto 📢</span></div>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Escolha um som"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 5. QUEM SOFRE COM O BARULHO ===================== -->
+<section class="sec" id="quem" data-nav="sons" aria-labelledby="t-quem">
+  <div class="in">
+    <span class="selo rv">💛 Empatia</span>
+    <h2 class="titulo rv" id="t-quem">Quem sofre com o barulho?</h2>
+    <p class="lead rv">Toque em cada um para <b>baixar o volume</b> e deixar todo mundo tranquilo.</p>
+    <div class="pessoas" id="pessoas"></div>
+    <p class="contador" id="contaPessoas" aria-live="polite">0 de 6 vizinhos tranquilos</p>
+    <p class="msg-grande rv">O barulho alto não incomoda só você. Ele pode incomodar muita gente.</p>
+    <div class="fala rv"><svg viewBox="0 0 200 220" aria-hidden="true"><use href="#caca"/></svg><p>Som alto demais, ou por muito tempo, pode até machucar o ouvido. Vamos cuidar dele!</p></div>
+  </div>
+</section>
+
+<!-- ===================== 6. O SILÊNCIO TAMBÉM É DIREITO ===================== -->
+<section class="sec escuro" id="direito" data-nav="sossego" aria-labelledby="t-dir">
+  <div class="in">
+    <span class="selo rv">🌙 Sossego</span>
+    <h2 class="titulo rv" id="t-dir">O silêncio também é <span class="destaque">direito</span></h2>
+    <div class="direitos">
+      <div class="rv"><span aria-hidden="true">😌</span>Todo mundo merece descansar.</div>
+      <div class="rv"><span aria-hidden="true">😴</span>Todo mundo merece dormir em paz.</div>
+      <div class="rv"><span aria-hidden="true">⚖️</span>A lei protege o sossego das pessoas.</div>
+    </div>
+    <div class="cena-dn rv" id="cenaDN">
+      <svg viewBox="0 0 360 200" role="img" aria-labelledby="dnTit">
+        <title id="dnTit">Um bairro com casas. Troque entre dia e noite.</title>
+        <rect width="360" height="200" fill="#0F2B3D"/>
+        <rect class="ceu-dia" width="360" height="200" fill="#BDE3FF"/>
+        <g class="estrelas-dn" fill="#FFF1C4"><circle cx="40" cy="30" r="2"/><circle cx="120" cy="50" r="1.6"/><circle cx="200" cy="24" r="2"/><circle cx="250" cy="60" r="1.5"/><circle cx="90" cy="80" r="1.4"/></g>
+        <circle class="sol-dn" cx="300" cy="46" r="26" fill="#FFD447"/>
+        <g class="lua-dn"><circle cx="300" cy="46" r="24" fill="#FFF1C4"/><circle cx="312" cy="40" r="22" fill="#0F2B3D"/></g>
+        <rect y="160" width="360" height="40" fill="#2E7D4F"/>
+        <use href="#casa" x="20" y="86" width="90" height="90"/><use href="#casa" x="130" y="96" width="80" height="80"/><use href="#casa" x="236" y="80" width="100" height="100"/>
+        <g class="zzz" font-family="system-ui,sans-serif" font-weight="900" fill="#fff"><text x="70" y="84" font-size="18">Z</text><text x="84" y="70" font-size="14">z</text><text x="186" y="92" font-size="16">Z</text><text x="300" y="80" font-size="18">Z</text><text x="314" y="66" font-size="13">z</text></g>
+      </svg>
+      <p class="vol" id="volDN" aria-live="polite">☀️ De dia já é preciso ter cuidado com o volume.</p>
+    </div>
+    <div class="alterna rv">
+      <button class="btn" id="btnDia" type="button" aria-pressed="true">☀️ DIA</button>
+      <button class="btn azul" id="btnNoite" type="button" aria-pressed="false">🌙 NOITE</button>
+    </div>
+    <p class="faixa-noite rv">🌙 À NOITE É HORA DE BAIXAR O VOLUME</p>
+  </div>
+</section>
+
+<!-- ===================== 7. A CIPA CUIDA DO SOSSEGO ===================== -->
+<section class="sec" id="cipa" data-nav="sossego" aria-labelledby="t-cipa">
+  <div class="in">
+    <span class="selo rv">🛡️ A CIPA</span>
+    <h2 class="titulo rv" id="t-cipa">A CIPA cuida do sossego</h2>
+    <div class="info-cipa">
+      <div class="rv"><span aria-hidden="true">👮</span>A CIPA também ajuda a cuidar do silêncio, inclusive à noite.</div>
+      <div class="rv"><span aria-hidden="true">🔎</span>Ela pode fiscalizar situações de barulho exagerado.</div>
+      <div class="rv"><span aria-hidden="true">📟</span><p>O <b>decibelímetro</b> é o aparelho que ajuda a descobrir se o barulho está alto demais.</p></div>
+    </div>
+    <div class="cena-db rv" id="cenaDB">
+      <svg viewBox="0 0 360 220" role="img" aria-labelledby="dbTit">
+        <title id="dbTit">Um carro com caixa de som e um agente da CIPA segurando um decibelímetro, que mostra se o som está tranquilo ou alto demais.</title>
+        <rect y="180" width="360" height="40" fill="#9DAAA2"/><path d="M0 196H360" stroke="#fff" stroke-width="3" stroke-dasharray="16 12"/>
+        <g class="caixa-vibra"><use href="#carro" x="2" y="110" width="150" height="84"/><use href="#caixa" x="104" y="96" width="30" height="40"/></g>
+        <g class="ondas-carro" color="#E66767"><path class="onda" d="M142 104Q152 116 142 128" stroke-width="4"/><path class="onda d2" d="M154 94Q170 116 154 138" stroke-width="4"/><path class="onda d3" d="M166 84Q188 116 166 148" stroke-width="4"/></g>
+        <use href="#agente" x="296" y="70" width="60" height="126"/>
+        <rect x="200" y="84" width="120" height="96" rx="16" fill="#1B4D2E" stroke="#14261C" stroke-width="3"/>
+        <circle cx="260" cy="72" r="12" fill="#58685F" stroke="#14261C" stroke-width="3"/><rect x="254" y="76" width="12" height="12" fill="#1B4D2E"/>
+        <rect x="210" y="94" width="100" height="72" rx="10" fill="#F4F9F5"/>
+        <path d="M218 150A42 42 0 0 1 232 118" fill="none" stroke="#2EA76A" stroke-width="10"/>
+        <path d="M236 115A42 42 0 0 1 284 115" fill="none" stroke="#E8B94A" stroke-width="10"/>
+        <path d="M288 118A42 42 0 0 1 302 150" fill="none" stroke="#E66767" stroke-width="10"/>
+        <g class="ponteiro" id="ponteiro"><path d="M260 150L260 112" stroke="#14261C" stroke-width="4" stroke-linecap="round"/></g>
+        <circle cx="260" cy="150" r="6" fill="#14261C"/>
+        <text x="260" y="163" font-size="9" font-weight="900" text-anchor="middle" fill="#14261C" font-family="system-ui,sans-serif">dB</text>
+      </svg>
+      <p class="leitura" id="leitura" aria-live="polite">📟 Toque em “MEDIR O SOM”.</p>
+    </div>
+    <div class="botoes-db rv">
+      <button class="btn alerta" id="btnMedir" type="button">📟 MEDIR O SOM</button>
+      <button class="btn verde" id="btnBaixar" type="button">🔉 BAIXAR O VOLUME</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 8. PODE OU NÃO PODE ===================== -->
+<section class="sec" id="jogo" data-nav="missao" aria-labelledby="t-jogo">
+  <div class="in">
+    <span class="selo rv">🎮 Jogo</span>
+    <h2 class="titulo rv" id="t-jogo">Pode ou não pode?</h2>
+    <p class="lead rv">Leia a situação e escolha. O Cacá explica depois!</p>
+    <div class="rv" id="jogoBox" aria-live="polite" style="margin-top:18px"></div>
+  </div>
+</section>
+
+<!-- ===================== 9. MISSÃO GUARDIÃO DO SILÊNCIO ===================== -->
+<section class="sec" id="missao" data-nav="missao" aria-labelledby="t-mis">
+  <div class="in">
+    <span class="selo rv">🏅 Sua missão</span>
+    <h2 class="titulo rv" id="t-mis">Missão Guardião do Silêncio</h2>
+    <p class="lead rv">Toque em cada missão para aceitar o desafio.</p>
+    <div class="missoes" id="missoes"></div>
+    <div class="barra-missao" aria-hidden="true"><i id="barraMissao"></i></div>
+    <p class="conta-missao" id="contaMissao" aria-live="polite">0 de 6 missões</p>
+    <div class="medalha" id="medalha">
+      <div class="m" aria-hidden="true">🏅</div>
+      <h3>VOCÊ É UM GUARDIÃO DO SILÊNCIO!</h3>
+      <p style="font-weight:700;margin-top:6px">O Cacá está muito orgulhoso de você! 🦅💚</p>
+      <label for="nomeGuardiao">Escreva seu nome na medalha:</label>
+      <input id="nomeGuardiao" type="text" maxlength="30" autocomplete="off" placeholder="Seu nome">
+      <p class="certificado" id="certificado" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 10. QUIZ ===================== -->
+<section class="sec" id="quiz" data-nav="quiz" aria-labelledby="t-quiz">
+  <div class="in">
+    <span class="selo rv">🧠 Mini quiz</span>
+    <h2 class="titulo rv" id="t-quiz">Vamos ver o que você aprendeu?</h2>
+    <div class="rv" style="margin-top:18px">
+      <div class="quiz-prog" id="quizProg" aria-hidden="true"></div>
+      <div id="quizBox" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 11. PRECISA DE AJUDA ===================== -->
+<section class="sec" id="ajuda" data-nav="quiz" aria-labelledby="t-aj">
+  <div class="in">
+    <span class="selo rv">🆘 Pedir ajuda</span>
+    <h2 class="titulo rv" id="t-aj">Precisa de ajuda?</h2>
+    <p class="lead rv">Criança não precisa resolver sozinha.</p>
+    <ol class="passos-ajuda">
+      <li class="rv"><span class="num">1</span><div>Não discuta com ninguém.<small>Sua segurança vem primeiro.</small></div></li>
+      <li class="rv"><span class="num">2</span><div>Conte para um adulto de confiança.<small>Pai, mãe, responsável, professor ou professora.</small></div></li>
+      <li class="rv"><span class="num">3</span><div>O adulto pode ligar para a Polícia Militar.<small>Contem com calma onde é o barulho.</small></div></li>
+    </ol>
+    <div class="cartao-190 rv">
+      <div class="rotulo">POLÍCIA MILITAR / CIPA</div>
+      <div class="num190" aria-label="cento e noventa">190</div>
+      <p>A ligação é gratuita.</p>
+      <a class="btn alerta largo" href="tel:190">📞 LIGAR 190</a>
+      <p class="obs">Use com um adulto e só quando precisar de verdade.</p>
+    </div>
+    <p class="nao-sozinho rv">Se um barulho estiver incomodando demais, conte para um adulto. 💚</p>
+
+    <details class="adultos rv">
+      <summary>👨‍👩‍👧 Para os adultos: o que diz a lei</summary>
+      <div class="tec">
+        <ul>
+          <li><strong>Lei das Contravenções Penais (Decreto-Lei nº 3.688/1941), art. 42:</strong> perturbar o trabalho ou o sossego alheios com gritaria ou algazarra, abusando de instrumentos sonoros ou sinais acústicos, ou provocando ou não impedindo barulho de animal sob sua guarda. Pena: prisão simples de 15 dias a 3 meses, ou multa.</li>
+          <li><strong>Resolução CONAMA nº 1/1990:</strong> ruídos acima dos níveis aceitáveis pela norma ABNT NBR 10.151 são considerados prejudiciais à saúde e ao sossego público. As medições seguem essa norma.</li>
+          <li><strong>Som em veículos (CTB, art. 228, e Resolução CONTRAN nº 624/2016):</strong> é proibido usar no veículo equipamento que produza som audível pelo lado externo e que perturbe o sossego público nas vias. É infração de trânsito grave.</li>
+          <li>Leis municipais podem trazer horários e limites próprios. Consulte as normas da sua cidade.</li>
+        </ul>
+        <p><strong>Como denunciar:</strong> Polícia Militar — <strong>190</strong>. Não se exponha a risco nem tente resolver o conflito sozinho.</p>
+        <p class="conf">Resumo informativo, conferido em setembro de 2026. Vale sempre o texto oficial das normas.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== 12. ENCERRAMENTO ===================== -->
+<footer class="final" id="final" data-nav="quiz">
+  <div class="final-cena" aria-hidden="true">
+    <svg viewBox="0 0 360 270" preserveAspectRatio="xMidYMax meet">
+      <g fill="#FFF1C4"><circle class="estrela" cx="30" cy="30" r="2"/><circle class="estrela" cx="110" cy="60" r="1.6" style="animation-delay:-1s"/><circle class="estrela" cx="200" cy="20" r="2" style="animation-delay:-.4s"/><circle class="estrela" cx="250" cy="70" r="1.5" style="animation-delay:-1.5s"/></g>
+      <circle cx="310" cy="46" r="24" fill="#FFF1C4"/><circle cx="322" cy="40" r="22" fill="#11304A"/>
+      <path d="M0 200L30 192L52 150L66 144H170L184 152L202 188L240 192L270 168L286 162H342L354 170L372 192L400 194V270H0Z" fill="#244F3A"/>
+      <use href="#casa" x="0" y="150" width="90" height="90"/><use href="#casa" x="270" y="140" width="96" height="96"/>
+      <use href="#crianca" x="84" y="168" width="48" height="90" style="color:#E8B94A"/>
+      <use href="#crianca" x="236" y="170" width="46" height="88" style="color:#3987E5"/>
+      <use href="#caca" x="120" y="96" width="120" height="132"/>
+      <g font-family="system-ui,sans-serif" font-weight="900" fill="#fff" opacity=".8"><text x="36" y="140" font-size="16">Z</text><text x="48" y="126" font-size="12">z</text><text x="316" y="130" font-size="16">Z</text></g>
+      <rect y="250" width="360" height="20" fill="#1B4D2E"/>
+    </svg>
+  </div>
+  <div class="final-txt">
+    <h2>Seja um Guardião do Silêncio!</h2>
+    <p class="msg">Quando respeitamos o silêncio, cuidamos das pessoas, dos animais e da nossa cidade.</p>
+    <p class="msg" style="font-size:17px;color:#CFE6D7">“Respeitar o silêncio também é cuidar das pessoas.”</p>
+    <div class="assina">
+      <span class="brasao" role="img" aria-label="Brasão da CIPA Monte Roraima"></span>
+      <div><b>CIPA MONTE RORAIMA / PMRR</b><span>Companhia Independente de Policiamento Ambiental · Polícia Militar de Roraima</span></div>
+    </div>
+    <p class="lema">“Cuidando do sossego de Roraima, uma noite tranquila de cada vez.”</p>
+    <div class="final-acoes">
+      <button class="btn" id="share" type="button">📤 COMPARTILHAR</button>
+      <button class="btn branco js-instalar" type="button">📲 SALVAR PARA USAR OFFLINE</button>
+      <span class="status js-status" role="status" aria-live="polite" style="justify-self:center"></span>
+      <p class="nota-off">Abra uma vez com internet. Depois você poderá consultar offline.</p>
+      <a class="btn azul peq" href="#inicio">⬆ VOLTAR AO INÍCIO</a>
+    </div>
+    <p class="creditos">Ilustrações originais criadas para este material. Conteúdo educativo da CIPA Monte Roraima / PMRR. Normas conferidas em setembro de 2026.</p>
+  </div>
+</footer>
+</main>
+
+<nav class="nav" aria-label="Seções">
+  <a href="#inicio" data-alvo="inicio"><span aria-hidden="true">🏠</span>Início</a>
+  <a href="#invisivel" data-alvo="sons"><span aria-hidden="true">🔊</span>Sons</a>
+  <a href="#direito" data-alvo="sossego"><span aria-hidden="true">🌙</span>Sossego</a>
+  <a href="#jogo" data-alvo="missao"><span aria-hidden="true">🎮</span>Missão</a>
+  <a href="#quiz" data-alvo="quiz"><span aria-hidden="true">🧠</span>Quiz</a>
+</nav>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-ttl">
+  <div class="sheet-box">
+    <svg viewBox="0 0 200 220" aria-hidden="true"><use href="#caca"/></svg>
+    <h3 id="sheet-ttl">Salvar no celular</h3>
+    <p class="sub" id="sheet-sub"></p>
+    <ol id="passos"></ol>
+    <button class="btn largo" id="fechar" type="button">ENTENDI! 👍</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var doc = document.documentElement;
+  doc.classList.add('js');
+  var semMov = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(id){ return document.getElementById(id); }
+  function el(tag, cls, html){ var e = document.createElement(tag); if(cls) e.className = cls; if(html != null) e.innerHTML = html; return e; }
+  function guarda(k, v){ try{ localStorage.setItem('somRR.'+k, JSON.stringify(v)); }catch(e){} }
+  function le(k){ try{ var v = localStorage.getItem('somRR.'+k); return v ? JSON.parse(v) : null; }catch(e){ return null; } }
+  function estrelas(n, tot){ var s=''; for(var i=0;i<tot;i++) s += i<n ? '⭐' : '☆'; return s; }
+  function pula(elm){ elm.classList.remove('pula'); void elm.getBoundingClientRect(); elm.classList.add('pula'); }
+
+  /* --- Festa: notas musicais tranquilas e estrelas --- */
+  function festa(){
+    if(semMov) return;
+    var fx = el('div','festa'); fx.setAttribute('aria-hidden','true');
+    var itens = ['⭐','🎵','💚','✨','🌙','🦅','💛','🎶'];
+    for(var i=0;i<30;i++){
+      var p = el('i'); p.textContent = itens[i % itens.length];
+      p.style.left = (Math.random()*100)+'%'; p.style.fontSize = (18+Math.random()*16)+'px';
+      p.style.setProperty('--dx', ((Math.random()-.5)*120)+'px'); p.style.setProperty('--r', ((Math.random()-.5)*300)+'deg');
+      p.style.animationDelay = (Math.random()*.5)+'s'; p.style.animationDuration = (2+Math.random()*1.4)+'s';
+      fx.appendChild(p);
+    }
+    document.body.appendChild(fx);
+    setTimeout(function(){ fx.remove(); }, 4200);
+  }
+
+  /* --- Aparecer ao rolar --- */
+  var io = null;
+  if('IntersectionObserver' in window && !semMov){
+    io = new IntersectionObserver(function(ents){ ents.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } }); },{rootMargin:'0px 0px -8% 0px', threshold:.08});
+    document.querySelectorAll('.rv').forEach(function(r){ io.observe(r); });
+  } else { document.querySelectorAll('.rv').forEach(function(r){ r.classList.add('on'); }); }
+
+  /* --- Progresso + navegação ativa --- */
+  var pf = $('progFill'), ticking = false;
+  function rolagem(){ ticking = false; var max = doc.scrollHeight - innerHeight; pf.style.width = (max > 0 ? Math.min(1, Math.max(0, scrollY/max)) * 100 : 0)+'%'; }
+  addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(rolagem); } }, {passive:true});
+  addEventListener('resize', rolagem); rolagem();
+  var navLinks = document.querySelectorAll('.nav a');
+  function marcaNav(alvo){ navLinks.forEach(function(a){ if(a.getAttribute('data-alvo') === alvo) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current'); }); }
+  marcaNav('inicio');
+  if('IntersectionObserver' in window){
+    var ion = new IntersectionObserver(function(ents){ ents.forEach(function(e){ if(e.isIntersecting) marcaNav(e.target.getAttribute('data-nav')); }); },{rootMargin:'-45% 0px -50% 0px'});
+    document.querySelectorAll('[data-nav]').forEach(function(s){ ion.observe(s); });
+  }
+
+  /* ===================== GUIA: toque no Cacá ===================== */
+  var FALAS = [
+    ['“Oi! Eu sou o Carcará Guardião do Silêncio!”','💡 Dica: toque no Cacá para ganhar dicas!'],
+    ['“Quer aprender comigo como cuidar do sossego de todo mundo?”','💡 Dica: fone de ouvido deixa a música só para você.'],
+    ['“Meu ouvido é muito atento. Barulho alto me assusta!”','💡 Dica: à noite, baixe o volume da TV e do som.'],
+    ['“Os animais também sentem o barulho. Vamos cuidar deles?”','💡 Dica: pense nos vizinhos antes de aumentar o som.'],
+    ['“Vem comigo! Role a tela para baixo.” ⬇️','💡 Dica: grito só em brincadeira ao ar livre, longe de quem descansa.']
+  ];
+  var iF = 0, btnCaca = $('btnCaca');
+  btnCaca.addEventListener('click', function(){
+    iF = (iF + 1) % FALAS.length;
+    $('balaoCaca').textContent = FALAS[iF][0]; $('dicaCaca').textContent = FALAS[iF][1];
+    var svg = btnCaca.querySelector('svg'); pula(svg);
+    svg.classList.remove('voa'); void svg.getBoundingClientRect(); svg.classList.add('voa');
+  });
+
+  /* ===================== SOM INVISÍVEL ===================== */
+  var cenaSom = $('cenaSom'), btnSom = $('btnSom');
+  btnSom.addEventListener('click', function(){
+    var on = !cenaSom.classList.contains('tocando');
+    cenaSom.classList.toggle('tocando', on);
+    btnSom.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btnSom.textContent = on ? '🔕 DESLIGAR O SOM' : '🔔 FAZER UM SOM';
+    $('legSom').textContent = on ? '👂 Viu? O som viaja pelo ar até o ouvido. A gente não vê, mas sente!' : 'Silêncio… O ouvido descansa. 😌';
+  });
+
+  /* ===================== MEDIDOR ===================== */
+  var SONS = [
+    ['🤫','Sussurro',1,true,'Bem baixinho. Dá para conversar e descansar.'],
+    ['🗣️','Conversa calma',2,true,'Um som tranquilo. Todo mundo se entende.'],
+    ['🎵','Música baixinha',2,true,'Gostosa de ouvir, sem incomodar ninguém.'],
+    ['🏍️','Moto barulhenta',4,false,'Muito alta! Assusta e incomoda as pessoas.'],
+    ['🚗','Buzina',5,false,'Muito alta! Só deve ser usada quando for mesmo necessário.'],
+    ['🔊','Som automotivo alto',5,false,'Muito alto! Incomoda a vizinhança e pode machucar o ouvido.']
+  ];
+  var range = $('somRange'), chips = $('chips');
+  SONS.forEach(function(s, i){
+    var c = el('button','chip', s[0]+' '+s[1]); c.type = 'button'; c.setAttribute('aria-pressed','false');
+    c.addEventListener('click', function(){ range.value = i; mostraSom(i); });
+    chips.appendChild(c);
+  });
+  function mostraSom(i){
+    var s = SONS[i];
+    $('medEmo').textContent = s[0]; $('medNome').textContent = s[1];
+    var barras = $('medBarras');
+    barras.className = 'barras' + (s[3] ? '' : ' alto');
+    barras.querySelectorAll('i').forEach(function(b, k){ b.classList.toggle('on', k < s[2]); });
+    var selo = $('medSelo'); selo.className = 'selo-som ' + (s[3] ? 'tranq' : 'alto'); selo.textContent = s[3] ? '✅ SOM TRANQUILO' : '⚠️ SOM MUITO ALTO';
+    $('medExp').textContent = s[4];
+    range.setAttribute('aria-valuetext', s[1] + ', ' + (s[3] ? 'som tranquilo' : 'som muito alto'));
+    chips.querySelectorAll('.chip').forEach(function(c, k){ c.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
+  }
+  range.addEventListener('input', function(){ mostraSom(+range.value); });
+  mostraSom(0);
+
+  /* ===================== QUEM SOFRE ===================== */
+  var PESSOAS = [
+    ['👶','Bebê','Acorda assustado e chora.'],
+    ['👵','Vovó e vovô','Precisam descansar bem.'],
+    ['📚','Quem estuda','Não consegue prestar atenção.'],
+    ['👷','Quem trabalha cedo','Precisa dormir para trabalhar.'],
+    ['🐶','Cachorro e gato','Têm ouvido sensível e se assustam.'],
+    ['👨‍👩‍👧','A família vizinha','Quer paz dentro de casa.']
+  ];
+  var boxP = $('pessoas'), calmos = 0;
+  PESSOAS.forEach(function(p){
+    var b = el('button','pessoa rv'); b.type = 'button'; b.setAttribute('aria-pressed','false');
+    b.innerHTML = '<span class="emo" aria-hidden="true">'+p[0]+'</span><span class="rea" aria-hidden="true">😣</span><b>'+p[1]+'</b><span class="t">'+p[2]+'</span><span class="acao">🔉 toque para baixar o volume</span>';
+    b.addEventListener('click', function(){
+      var ok = b.getAttribute('aria-pressed') !== 'true';
+      b.setAttribute('aria-pressed', ok ? 'true' : 'false');
+      b.querySelector('.rea').textContent = ok ? '😌' : '😣';
+      b.querySelector('.acao').textContent = ok ? '✔ agora está tranquilo' : '🔉 toque para baixar o volume';
+      calmos += ok ? 1 : -1;
+      $('contaPessoas').textContent = calmos + ' de ' + PESSOAS.length + ' vizinhos tranquilos' + (calmos === PESSOAS.length ? ' — todo mundo em paz! 🎉' : '');
+      if(ok && calmos === PESSOAS.length) festa();
+    });
+    boxP.appendChild(b); if(io) io.observe(b); else b.classList.add('on');
+  });
+
+  /* ===================== DIA / NOITE ===================== */
+  var cenaDN = $('cenaDN'), btnDia = $('btnDia'), btnNoite = $('btnNoite'), volDN = $('volDN');
+  function periodo(noite){
+    cenaDN.classList.toggle('noite', noite);
+    btnDia.setAttribute('aria-pressed', noite ? 'false' : 'true'); btnNoite.setAttribute('aria-pressed', noite ? 'true' : 'false');
+    volDN.textContent = noite ? '🌙 À noite é ainda mais importante baixar o volume. Hora de dormir!' : '☀️ De dia já é preciso ter cuidado com o volume.';
+  }
+  btnDia.addEventListener('click', function(){ periodo(false); });
+  btnNoite.addEventListener('click', function(){ periodo(true); });
+
+  /* ===================== DECIBELÍMETRO ===================== */
+  var cenaDB = $('cenaDB'), ponteiro = $('ponteiro'), leitura = $('leitura');
+  $('btnMedir').addEventListener('click', function(){
+    cenaDB.classList.add('alto'); ponteiro.style.transform = 'rotate(62deg)';
+    leitura.className = 'leitura alto'; leitura.textContent = '⚠️ O decibelímetro mostrou: volume ALTO DEMAIS!';
+  });
+  $('btnBaixar').addEventListener('click', function(){
+    cenaDB.classList.remove('alto'); ponteiro.style.transform = 'rotate(-58deg)';
+    leitura.className = 'leitura ok'; leitura.textContent = '✅ Volume baixo: som tranquilo. Obrigado por cuidar do sossego!';
+  });
+
+  /* ===================== JOGO: PODE OU NÃO PODE ===================== */
+  var SITU = [
+    {e:'📺', t:'TV muito alta de madrugada', p:false, x:'De madrugada as pessoas estão dormindo. Volume baixinho!'},
+    {e:'🎧', t:'Usar fone de ouvido', p:true, x:'Assim você ouve sem incomodar ninguém. Só não exagere no volume do fone.'},
+    {e:'🚗', t:'Som automotivo muito alto na rua', p:false, x:'Som alto no carro incomoda a vizinhança toda.'},
+    {e:'🏘️', t:'Pensar nos vizinhos antes de aumentar o som', p:true, x:'Pensar nos outros é cuidar do sossego de todos.'},
+    {e:'😱', t:'Gritar sem necessidade perto de quem está dormindo', p:false, x:'Quem dorme precisa de silêncio para descansar.'},
+    {e:'🌙', t:'Baixar o volume à noite', p:true, x:'À noite é hora de descanso. Muito bem!'},
+    {e:'🏍️', t:'Acelerar a moto só para fazer barulho', p:false, x:'Barulho sem motivo assusta pessoas e animais.'},
+    {e:'🐶', t:'Proteger o pet de barulhos muito altos', p:true, x:'Os animais têm ouvido sensível. Cuidar deles é importante!'}
+  ];
+  var jBox = $('jogoBox'), jI = 0, jOk = 0;
+  function jogoRender(){
+    if(jI >= SITU.length){
+      jBox.innerHTML = '<div class="situ"><svg class="mini pula" viewBox="0 0 200 220" aria-hidden="true"><use href="#caca"/></svg>'+
+        '<div class="txt" style="min-height:0">Você acertou '+jOk+' de '+SITU.length+'!</div>'+
+        '<div class="estrelas" style="font-size:24px;margin-top:6px" aria-hidden="true">'+estrelas(jOk, SITU.length)+'</div>'+
+        '<p style="font-weight:700;margin-top:10px">'+(jOk >= 6 ? 'Você já pensa como um Guardião do Silêncio! 🦅' : 'Cada resposta ensina algo novo. Você está aprendendo muito! 🌱')+'</p>'+
+        '<button type="button" class="btn largo" style="margin-top:16px" id="jDeNovo">🔁 JOGAR DE NOVO</button></div>';
+      festa();
+      $('jDeNovo').addEventListener('click', function(){ jI = 0; jOk = 0; jogoRender(); });
+      return;
+    }
+    var s = SITU[jI];
+    jBox.innerHTML = '<div class="pontos"><span>Situação '+(jI+1)+' de '+SITU.length+'</span><span class="estrelas" aria-label="'+jOk+' estrelas">'+estrelas(jOk, SITU.length)+'</span></div>'+
+      '<div class="situ"><div class="emo" aria-hidden="true">'+s.e+'</div><div class="txt">'+s.t+'</div>'+
+      '<div class="escolha"><button type="button" class="btn verde" data-r="1">✅ PODE</button><button type="button" class="btn alerta" data-r="0">❌ NÃO PODE</button></div>'+
+      '<div id="jResp"></div></div>';
+    jBox.querySelectorAll('.escolha .btn').forEach(function(bt){
+      bt.addEventListener('click', function(){
+        var certo = (bt.getAttribute('data-r') === '1') === s.p;
+        if(certo) jOk++;
+        jBox.querySelectorAll('.escolha .btn').forEach(function(x){ x.disabled = true; if(x !== bt) x.style.opacity = '.4'; });
+        $('jResp').innerHTML = '<div class="resp '+(certo?'ok':'quase')+'"><b>'+(certo?'✅ MUITO BEM!':'💡 QUASE! VAMOS APRENDER JUNTOS.')+'</b>'+(s.p ? '✅ Pode. ' : '❌ Não pode. ')+s.x+'</div>'+
+          '<button type="button" class="btn azul largo" style="margin-top:12px" id="jProx">'+(jI+1 < SITU.length ? 'PRÓXIMA ➜' : 'VER RESULTADO 🏆')+'</button>';
+        jBox.querySelector('.estrelas').textContent = estrelas(jOk, SITU.length);
+        var p = $('jProx'); p.focus({preventScroll:true}); p.addEventListener('click', function(){ jI++; jogoRender(); });
+      });
+    });
+  }
+  jogoRender();
+
+  /* ===================== MISSÃO ===================== */
+  var MISSOES = [
+    ['🔉','Baixar o volume quando estiver alto'],
+    ['😴','Respeitar a hora de descanso'],
+    ['🎧','Usar fone quando necessário'],
+    ['🏘️','Pensar nos vizinhos'],
+    ['🚗','Lembrar os adultos sobre o som alto'],
+    ['🐾','Cuidar dos animais também']
+  ];
+  var feitas = le('missoes') || [], boxM = $('missoes'), medalha = $('medalha');
+  function atualizaMissao(comemora){
+    var n = feitas.filter(Boolean).length, tudo = n === MISSOES.length, antes = medalha.classList.contains('on');
+    $('barraMissao').style.width = (n/MISSOES.length*100)+'%';
+    $('contaMissao').textContent = n + ' de ' + MISSOES.length + ' missões' + (tudo ? ' — completas! 🎉' : '');
+    medalha.classList.toggle('on', tudo);
+    if(tudo && !antes && comemora) festa();
+  }
+  MISSOES.forEach(function(m, i){
+    var b = el('button','missao'); b.type = 'button'; b.setAttribute('aria-pressed', feitas[i] ? 'true' : 'false');
+    b.innerHTML = '<span class="emo" aria-hidden="true">'+m[0]+'</span><span>'+m[1]+'<span class="ok-txt">'+(feitas[i]?'MISSÃO ACEITA!':'')+'</span></span><span class="chk" aria-hidden="true"></span>';
+    b.addEventListener('click', function(){
+      feitas[i] = !feitas[i];
+      b.setAttribute('aria-pressed', feitas[i] ? 'true' : 'false');
+      b.querySelector('.ok-txt').textContent = feitas[i] ? 'MISSÃO ACEITA!' : '';
+      guarda('missoes', feitas); atualizaMissao(true);
+    });
+    boxM.appendChild(b);
+  });
+  atualizaMissao(false);
+  var nome = $('nomeGuardiao'), cert = $('certificado');
+  function mostraNome(){ var v = nome.value.trim(); cert.textContent = v ? '🏅 Medalha de Guardião do Silêncio para ' + v + '!' : ''; }
+  nome.value = le('nome') || ''; mostraNome();
+  nome.addEventListener('input', function(){ mostraNome(); guarda('nome', nome.value.trim()); });
+
+  /* ===================== QUIZ ===================== */
+  var QUIZ = [
+    {q:'O som muito alto pode incomodar?', o:[['👍','SIM'],['👎','NÃO']], c:0, x:'Pode incomodar e até machucar o ouvido.'},
+    {q:'Quem pode sofrer com o barulho?', o:[['👶','Bebês, idosos, animais e muita gente'],['🪨','Ninguém'],['🌵','Só as plantas']], c:0, x:'O barulho alto incomoda muita gente e muitos bichos.'},
+    {q:'À noite, o volume deve ficar…', o:[['🔉','Mais baixo'],['🔊','Mais alto']], c:0, x:'À noite é hora de descansar.'},
+    {q:'O que a CIPA usa para medir o som?', o:[['📟','Decibelímetro'],['🌡️','Termômetro'],['📏','Régua']], c:0, x:'O decibelímetro mostra se o som está alto demais.'},
+    {q:'Se houver muito barulho, a criança deve resolver sozinha?', o:[['👍','SIM'],['👎','NÃO']], c:1, x:'Conte para um adulto de confiança.'}
+  ];
+  var qBox = $('quizBox'), qProg = $('quizProg'), qI = 0, qOk = 0;
+  QUIZ.forEach(function(){ qProg.appendChild(el('i')); });
+  function progQuiz(){ qProg.querySelectorAll('i').forEach(function(p, i){ p.className = i < qI ? 'feito' : (i === qI ? 'on' : ''); }); }
+  function quizRender(){
+    progQuiz();
+    if(qI >= QUIZ.length){
+      var msg = qOk === QUIZ.length ? 'Uau! Acertou tudo! Você é um verdadeiro Guardião do Silêncio! 🏅' :
+                qOk >= 3 ? 'Muito bem! Você aprendeu muita coisa sobre o sossego! 🌙' :
+                'Você foi até o fim e aprendeu coisas novas. Isso é o mais importante! 🌱';
+      qBox.innerHTML = '<div class="perg quiz-fim"><svg class="mini pula" viewBox="0 0 200 220" aria-hidden="true" style="width:110px;height:121px"><use href="#caca"/></svg>'+
+        '<h3>🎉 MISSÃO CONCLUÍDA!</h3><div class="est" aria-hidden="true">'+estrelas(qOk, QUIZ.length)+'</div>'+
+        '<p style="font-weight:900;font-size:20px">'+qOk+' de '+QUIZ.length+' acertos</p><p style="font-weight:700;margin-top:8px">'+msg+'</p>'+
+        '<button type="button" class="btn largo" style="margin-top:16px" id="qDeNovo">🔁 JOGAR DE NOVO</button></div>';
+      festa();
+      $('qDeNovo').addEventListener('click', function(){ qI = 0; qOk = 0; quizRender(); });
+      return;
+    }
+    var p = QUIZ[qI];
+    qBox.innerHTML = '<div class="perg"><div class="n">PERGUNTA '+(qI+1)+' DE '+QUIZ.length+'</div><h3>'+p.q+'</h3><div class="opcoes'+(p.o.length === 2 ? ' duplo' : '')+'">'+
+      p.o.map(function(o, i){ return '<button type="button" class="opc" data-i="'+i+'"><span class="emo" aria-hidden="true">'+o[0]+'</span><span>'+o[1]+'</span></button>'; }).join('')+
+      '</div><div id="qResp"></div></div>';
+    qBox.querySelectorAll('.opc').forEach(function(bt){
+      bt.addEventListener('click', function(){
+        var i = +bt.getAttribute('data-i'), certo = i === p.c;
+        if(certo) qOk++;
+        qBox.querySelectorAll('.opc').forEach(function(x, k){
+          x.disabled = true;
+          if(k === p.c){ x.classList.add('certa'); x.insertAdjacentHTML('beforeend','<span class="tag">✔ resposta certa</span>'); }
+        });
+        if(!certo){ bt.classList.add('errada'); bt.insertAdjacentHTML('beforeend','<span class="tag">sua escolha</span>'); }
+        $('qResp').innerHTML = '<div class="resp '+(certo?'ok':'quase')+'" style="text-align:center">'+
+          (certo ? '<svg class="mini pula" viewBox="0 0 200 220" aria-hidden="true"><use href="#caca"/></svg><b>✅ MUITO BEM!</b>' : '<b>💡 QUASE! VAMOS APRENDER JUNTOS.</b>')+p.x+
+          '</div><button type="button" class="btn azul largo" style="margin-top:12px" id="qProx">'+(qI+1 < QUIZ.length ? 'PRÓXIMA PERGUNTA ➜' : 'VER MEU RESULTADO 🏆')+'</button>';
+        var pr = $('qProx'); pr.focus({preventScroll:true}); pr.addEventListener('click', function(){ qI++; quizRender(); });
+      });
+    });
+  }
+  quizRender();
+
+  /* ===================== AVISO + COMPARTILHAR ===================== */
+  var toast = $('toast'), tT;
+  function aviso(txt){ toast.textContent = txt; toast.classList.add('show'); clearTimeout(tT); tT = setTimeout(function(){ toast.classList.remove('show'); }, 2400); }
+  $('share').addEventListener('click', function(){
+    var url = location.href.split('#')[0];
+    var dados = { title:'Silêncio Também É Direito', text:'Venha ser um Guardião do Silêncio! Uma aventura da CIPA/PMRR sobre poluição sonora e o direito ao sossego. 🦅', url:url };
+    if(navigator.share){ navigator.share(dados).catch(function(){}); }
+    else if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(function(){ aviso('Link copiado! 🦅'); }, function(){ aviso('Copie o link da barra de endereços'); });
+    } else { aviso('Copie o link da barra de endereços'); }
+  });
+
+  /* ===================================================================
+     OFFLINE: Service Worker + instalação na tela inicial
+     =================================================================== */
+  var status = document.querySelectorAll('.js-status'), btnsInst = document.querySelectorAll('.js-instalar');
+  var sheet = $('sheet'), passos = $('passos'), sheetTtl = $('sheet-ttl'), sheetSub = $('sheet-sub');
+  var promptInst = null, ultimoFoco = null;
+  var ESSENCIAIS = ['./','./index.html','./manifest.json','./icon-192.png','./icon-512.png','./apple-touch-icon.png'];
+  function mostrarStatus(txt, esperando){ status.forEach(function(s){ s.textContent = txt; s.className = 'status js-status on' + (esperando ? ' esperando' : ''); }); }
+  function textoBotoes(t){ btnsInst.forEach(function(b){ b.textContent = t; }); }
+  function abrirSheet(titulo, sub, itens){
+    sheetTtl.textContent = titulo; sheetSub.textContent = sub;
+    passos.innerHTML = itens.map(function(t, i){ return '<li><b>'+(i+1)+'</b><span>'+t+'</span></li>'; }).join('');
+    ultimoFoco = document.activeElement; sheet.classList.add('show'); $('fechar').focus();
+  }
+  function fecharSheet(){ sheet.classList.remove('show'); if(ultimoFoco && ultimoFoco.focus) ultimoFoco.focus(); }
+  $('fechar').addEventListener('click', fecharSheet);
+  sheet.addEventListener('click', function(e){ if(e.target === sheet) fecharSheet(); });
+  addEventListener('keydown', function(e){ if(e.key === 'Escape' && sheet.classList.contains('show')) fecharSheet(); });
+
+  var ua = navigator.userAgent;
+  var iOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+
+  function confereCache(){
+    if(!('caches' in window)) return Promise.resolve(false);
+    return Promise.all(ESSENCIAIS.map(function(u){ return caches.match(new URL(u, location.href).href, {ignoreSearch:true}); }))
+      .then(function(r){ return r.every(Boolean); }).catch(function(){ return false; });
+  }
+  function atualizaOffline(){ confereCache().then(function(ok){ if(ok){ mostrarStatus('✔ DISPONÍVEL OFFLINE NESTE APARELHO'); doc.classList.add('salvo'); } }); }
+
+  if('serviceWorker' in navigator && location.protocol.indexOf('http') === 0){
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('./sw.js', { scope: './' }).then(function(){
+        if(!navigator.serviceWorker.controller) mostrarStatus('⏳ Salvando para usar offline…', true);
+        navigator.serviceWorker.ready.then(atualizaOffline);
+        navigator.serviceWorker.addEventListener('controllerchange', atualizaOffline);
+      }).catch(function(){ mostrarStatus('⚠ Não foi possível salvar offline agora', true); });
+    });
+  }
+
+  window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); promptInst = e; textoBotoes('📲 INSTALAR NO CELULAR'); });
+  window.addEventListener('appinstalled', function(){ promptInst = null; textoBotoes('✅ INSTALADO NO CELULAR'); mostrarStatus('✔ O Cacá está na sua tela inicial'); });
+  if(standalone){ textoBotoes('✅ INSTALADO NO CELULAR'); }
+
+  btnsInst.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if(standalone){ aviso('Já está salvo no seu celular! 🦅'); return; }
+      if(promptInst){
+        promptInst.prompt();
+        promptInst.userChoice.then(function(r){ if(r.outcome !== 'accepted') aviso('Você pode instalar depois por aqui 😉'); promptInst = null; });
+        return;
+      }
+      if(iOS){
+        abrirSheet('Salvar no iPhone', 'É fácil! No Safari, faça assim:',
+          ['Toque em <strong>Compartilhar</strong> <span aria-hidden="true">⬆️</span>',
+           'Toque em <strong>“Adicionar à Tela de Início”</strong>',
+           '<strong>Pronto!</strong> O Cacá agora fica no seu celular. 🦅']);
+        return;
+      }
+      abrirSheet('Salvar no celular', 'Use o menu do navegador:',
+        ['Toque no menu <strong>⋮</strong> do navegador',
+         'Escolha <strong>Instalar aplicativo</strong> ou <strong>Adicionar à tela inicial</strong>',
+         '<strong>Pronto!</strong> O Cacá agora fica no seu celular. 🦅']);
+    });
+  });
+})();
+</script>
+</body>
+</html>
